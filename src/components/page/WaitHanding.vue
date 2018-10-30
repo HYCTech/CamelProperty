@@ -16,8 +16,9 @@
                 <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
-            <el-table :data="tableData" border class="table" ref="multipleTable" :default-sort="{prop: 'date', order: 'descending'}"
-                      @selection-change="handleSelectionChange" v-loading.body="loading">
+            <el-table :data="tableData" border class="table" ref="multipleTable"
+                      :default-sort="{prop: 'date', order: 'descending'}"
+                      @selection-change="handleSelectionChange"  >
                 <el-table-column prop="repair_place" label="地址">
                 </el-table-column>
                 <el-table-column prop="customer_name" label="姓名">
@@ -36,17 +37,7 @@
                 <el-table-column prop="picture" label="图片">
                     <template slot-scope="scope">
                         <div v-if="scope.row.picture.length>0">
-                            <!--<el-popover
-                                ref="popover"
-                                placement="top-start"
-                                title="大图"
-                                trigger="hover">
-                                <img :src="item.minFilename" title="点击查看大图" style="width:60px;height:100px;"
-                                     @click="bigImg(item.filename)" class="img-item" alt=""
-                                     v-for="(item,index) in scope.row.picture">
-                            </el-popover>
-                            <img :src="scope.row.picture[0].minFilename"  @click="bigImg(item.filename)"  style="width:60px;height:100px;"
-                                 v-popover:popover>-->
+
                             <img :src="scope.row.picture[0].minFilename" @click="bigImg(scope.row.picture[0].filename)"
                                  style="width:80px;height:100px;"
                                  alt="点击查看大图" title="点击查看大图"
@@ -61,29 +52,13 @@
                 </el-table-column>
                 <el-table-column prop="offer" label="报价">
                 </el-table-column>
-                <el-table-column label="">
+                <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="primary" size="small" round>分配人员</el-button>
+                        <el-button type="text" icon="el-icon-edit" @click="distributionEdit(scope.$index, scope.row)">分配人员
+                        </el-button>
                     </template>
                 </el-table-column>
-                <!-- <el-table-column label="发送报价">
-                     <template slot-scope="scope">
-                         <el-button @click="sendPrices(scope.row)" type="primary" size="small" round>发送报价</el-button>
-                     </template>
-                 </el-table-column>-->
-                <!-- <el-table-column type="selection" width="55" align="center"></el-table-column>-->
-                <!--<el-table-column prop="date" label="日期" sortable width="150">
-                </el-table-column>
-                <el-table-column prop="name" label="姓名" width="120">
-                </el-table-column>
-                <el-table-column prop="address" label="地址" :formatter="formatter">
-                </el-table-column>
-                <el-table-column label="操作" width="180" align="center">
-                    <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                    </template>
-                </el-table-column>-->
+
             </el-table>
             <div class="pagination">
                 <el-pagination background @current-change="handleCurrentChange"
@@ -92,86 +67,50 @@
             </div>
         </div>
 
-        <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="50px">
+        <!-- 派单人员列表 -->
+        <el-dialog title="人员列表" :visible.sync="editVisible" width="30%">
 
-                <el-form-item label="日期">
-                    <el-date-picker type="date" placeholder="选择日期" v-model="form.date" value-format="yyyy-MM-dd"
-                                    style="width: 100%;"></el-date-picker>
-                </el-form-item>
-                <el-form-item label="姓名">
-                    <el-input v-model="form.name"></el-input>
-                </el-form-item>
-                <el-form-item label="地址">
-                    <el-input v-model="form.address"></el-input>
-                </el-form-item>
+            <el-radio-group v-model="radio" @change="onRadioChange">
+                <el-radio :label="index" :key="item._id" v-for="(item,index) in user_list">{{item.maintenance_name}}</el-radio>
+            </el-radio-group>
 
-            </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
                 <el-button type="primary" @click="saveEdit">确 定</el-button>
             </span>
         </el-dialog>
 
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-            </span>
-        </el-dialog>
-
         <!--显示大图-->
         <div class="dial-header">
-                   
             <el-dialog style="background-color:transparent;" title="显示大图" :visible.sync="showFlag" @close='closeDialog'>
-                       
                 <div style="text-align: left; margin: 0;width:10%;height: 50%">
-
                     <div class="adp"
                          style="width:300px;height:600px;line-height:600px;border-top:none;margin:0px 0px 0px 40px">
-                                     
                         <img :src="imgSrc"
                              style="width:700px;height:600px;">
-                                   
                     </div>
                 </div>
-                       
             </el-dialog>
-
         </div>
 
-        <!--显示维修人员列表-->
-        <el-dialog
-            title="提示"
-            :visible.sync="dialogVisible"
-            width="30%"
-            :before-close="handleClose">
-            <span>这是一段信息</span>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
 <script>
 
     import * as api from '@/api/index.js';
-    //import bigImg from "./bigImg";
 
     export default {
         name: 'basetable',
 
         data() {
             return {
-                dialogVisible:false,
+
+                resource:'',
+                dialogVisible: false,
                 imgSrc: "",
                 showFlag: false,
-                radio: "",
+                radio: "1",
                 url: 'http://localhost:8082/static/vuetable.json',
                 tableData: [],
                 cur_page: 1,
@@ -182,6 +121,7 @@
                 is_search: false,
                 editVisible: false,
                 delVisible: false,
+                user_list: [],
                 form: {
                     repair_place: "",
                     customer_name: "",
@@ -252,62 +192,39 @@
                 this.imgSrc = "";
                 this.showFlag = false;
             },
-
-            sendPrices(row){
-                let pushMessage={
-                    title:'维修价格',
-                    orderId:row.orderId,    //订单ID 显示用的
-                    content:row.content,
-                    openID:row.openID,      //用户的openid
-                    order_id:row._id,       //order表_id 操作用的
-                }
-                api.sendPrices(pushMessage).then(res=>{
-                    console.log(res)
-                    if(res.success){
-                        this.successMsg()
-                    }else {
-                        this.errorMsg()
-                    }
-                })
-                console.log(pushMessage)
+            //选择人员
+            onRadioChange(item) {
+                console.log("item", item);
+                this.resource=item;
             },
-
-            formatter(row, column) {
-                return row.address;
+            // 保存分配人員
+            saveEdit() {
+                //this.$set(this.tableData, this.idx, this.form);
+                this.editVisible = false;
+                this.$message.success(`第 ${this.idx + 1}行 分配給 ${this.user_list[this.resource].maintenance_name}`);
             },
-            filterTag(value, row) {
-                return row.tag === value;
-            },
-            handleEdit(index, row) {
+            //订单分配人员
+            distributionEdit(index, row) {
                 this.idx = index;
                 const item = this.tableData[index];
                 this.form = {
                     name: item.name,
                     date: item.date,
                     address: item.address
-                }
+                };
+                api.getAllMaintenance()
+                    .then(res => {
+                        console.log(res.data.success);
+                        if(res.data.success){
+                            this.user_list=res.data.data;
+                        }
+                    })
+
                 this.editVisible = true;
             },
-            handleDelete(index, row) {
-                this.idx = index;
-                this.delVisible = true;
-            },
-
+            //选择查询类别
             handleSelectionChange(val) {
                 this.multipleSelection = val;
-            },
-            // 保存编辑
-            saveEdit() {
-                this.$set(this.tableData, this.idx, this.form);
-                this.editVisible = false;
-                this.$message.success(`修改第 ${this.idx + 1} 行成功`);
-            },
-
-            // 确定删除
-            deleteRow() {
-                this.tableData.splice(this.idx, 1);
-                this.$message.success('删除成功');
-                this.delVisible = false;
             }
         },
 

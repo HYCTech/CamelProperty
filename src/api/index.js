@@ -9,3 +9,8 @@ export const requestLogin = params => { return axios.post(`${base}/login/`, para
 export const getOrder = (page,prepage,filter) => {
     return axios.get(`${base}/api/order/?pageNum=${page}&pageSize=${prepage}&filter=${JSON.stringify(filter)}` );
 }
+
+//获取全部维修人员分页信息
+export const getAllMaintenance = () =>{
+    return axios.get(`${base}/api/maintenance`)
+}
