@@ -10,27 +10,29 @@
 
                 <el-select v-model="select_cate" placeholder="请选择" class="handle-select mr10">
                     <el-option key="1" label="请选择" value=""></el-option>
-                    <el-option key="2" label="姓名" value="customer_name"></el-option>
+                    <el-option key="2" label="姓名" value="staff_name"></el-option>
                     <el-option key="3" label="地址" value="repair_place"></el-option>
+                    <el-option key="4" label="电话号码" value="staff_tel"></el-option>
                 </el-select>
                 <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
+            <!--显示列表-->
             <el-table :data="tableData" border class="table" ref="multipleTable"
                       :default-sort="{prop: 'date', order: 'descending'}"
-                      @selection-change="handleSelectionChange"  >
-                <el-table-column prop="repair_place" label="地址">
+                      @selection-change="handleSelectionChange">
+                <el-table-column prop="orderId" label="单号">
                 </el-table-column>
-                <el-table-column prop="customer_name" label="姓名">
+                <el-table-column prop="staff_name" label="接单员">
                 </el-table-column>
-                <el-table-column prop="customer_tel" label="联系方式">
+                <el-table-column prop="staff_tel" label="联系方式">
                 </el-table-column>
-                <el-table-column prop="order_type" label="类别">
+                <el-table-column prop="order_type" label="类型">
                     <template slot-scope="scope">
-                        {{form.order_type=="public"?"公共":"个人"}}
+                        <span>{{scope.row.order_type=="personal"?"个人":"公共"}}</span>
                     </template>
                 </el-table-column>
-                <el-table-column prop="date" label="日期">
+                <el-table-column prop="repair_place" label="维修位置">
                 </el-table-column>
                 <el-table-column prop="content" label="内容">
                 </el-table-column>
@@ -50,12 +52,25 @@
                 </el-table-column>
                 <el-table-column prop="maintenance_cost" label="维修费">
                 </el-table-column>
-                <el-table-column prop="offer" label="报价">
+                <el-table-column prop="offer" label="合计">
+                </el-table-column>
+                <el-table-column prop="order_state" label="接单状态" width="120">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.order_state=="pending"?"待接单中":"已接单"}}</span>
+                    </template>
                 </el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="distributionEdit(scope.$index, scope.row)">分配人员
-                        </el-button>
+                        <div v-if="scope.row.order_state=='pending'">
+                            <el-button type="text" icon="el-icon-edit"
+                                       @click="distributionEdit(scope.$index, scope.row)">
+                                订单派送
+                            </el-button>
+                        </div>
+                        <div v-else>
+                            订单已派送
+                        </div>
+
                     </template>
                 </el-table-column>
 
@@ -68,17 +83,17 @@
         </div>
 
         <!-- 派单人员列表 -->
-        <el-dialog title="人员列表" :visible.sync="editVisible" width="30%">
+        <!--        <el-dialog title="人员列表" :visible.sync="editVisible" width="30%">
 
-            <el-radio-group v-model="radio" @change="onRadioChange">
-                <el-radio :label="index" :key="item._id" v-for="(item,index) in user_list">{{item.maintenance_name}}</el-radio>
-            </el-radio-group>
+                    <el-radio-group v-model="radio" @change="onRadioChange">
+                        <el-radio :label="index" :key="item._id" v-for="(item,index) in user_list">{{item.maintenance_name}}</el-radio>
+                    </el-radio-group>
 
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
-            </span>
-        </el-dialog>
+                    <span slot="footer" class="dialog-footer">
+                        <el-button @click="editVisible = false">取 消</el-button>
+                        <el-button type="primary" @click="saveEdit">确 定</el-button>
+                    </span>
+                </el-dialog>-->
 
         <!--显示大图-->
         <div class="dial-header">
@@ -93,12 +108,98 @@
             </el-dialog>
         </div>
 
+        <!-- 派单选择人员 弹出框 -->
+        <el-dialog title="订单派送" :visible.sync="editVisible">
+            <el-form :model="form" label-width="80px" ref="ruleForm">
+                <el-form-item label="维修位置 :" prop="repair_place">
+                    {{form.repair_place}}
+                </el-form-item>
+                <el-form-item label="类型:" prop="order_type">
+                    {{form.order_type=="personal"?"个人":"公共"}}
+                </el-form-item>
+                <el-form-item label="接单状态:" prop="order_state">
+                    {{"待接单中"}}
+                </el-form-item>
+                <el-row>
+                    <el-col :span="8">
+                        <el-form-item label="接单员:" prop="staff_name">
+                            <el-select v-model="form.staff_name" placeholder="请选择" @change="onRadioChange">
+                                <el-option :label="item.maintenance_name" :value="index"
+                                           v-for="(item,index) in user_list" :key="index"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="3">
+                        &nbsp;
+                    </el-col>
+                    <el-col :span="3">
+                        <el-form-item label="联系方式:" prop="staff_tel">
+                            {{form.staff_tel}}
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row>
+                    <el-col :span="8">
+                        <el-form-item label="接单时间:" prop="date">
+                            {{form.date}}
+
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="3">
+                        &nbsp;
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item label="完成时间:" prop="staff_tel">
+                            <el-select v-model="duration">
+                                <el-option v-for="item in options" :key="item.value" :value="item.value"
+                                           :label="item.label"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="8">
+                        <el-form-item label="材料费:" prop="material_cost">
+                            {{form.material_cost}}
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item label="维修费:" prop="maintenance_cost">
+                            {{form.maintenance_cost}}
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item label="报价:" prop="offer">
+                            {{form.offer}}
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-form-item label="内容:" prop="content">
+                    {{form.content}}
+                </el-form-item>
+                <el-form-item label="图片:">
+                    <template slot-scope="scope">
+                        <div v-if="form.picture.length>0">
+                            <img :src="form.picture[0].minFilename" style="width:210px;height:150px;">
+                        </div>
+                        <span v-show="form.picture.length==0">用户没有上传图片</span>
+                    </template>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="editVisible = false">取 消</el-button>
+                <el-button type="primary" @click="saveEdit">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
 <script>
 
     import * as api from '@/api/index.js';
+    import moment from 'moment';
 
     export default {
         name: 'basetable',
@@ -106,7 +207,7 @@
         data() {
             return {
 
-                resource:'',
+                resource: '',
                 dialogVisible: false,
                 imgSrc: "",
                 showFlag: false,
@@ -122,20 +223,38 @@
                 editVisible: false,
                 delVisible: false,
                 user_list: [],
+                options: [{
+                    value: '1',
+                    label: '1小时'
+                }, {
+                    value: '2',
+                    label: '2小时'
+                }, {
+                    value: '3',
+                    label: '3小时'
+                }, {
+                    value: '4',
+                    label: '半天'
+                }, {
+                    value: '5',
+                    label: '一天'
+                }],
+                duration: "1",
                 form: {
+                    _id: "",
+                    openID: "",
                     repair_place: "",
-                    customer_name: "",
-                    customer_tel: "",
                     content: "",
+                    staff_tel: "",
+                    staff_name: "",
+                    date: "",
                     picture: [],
+                    position: "",
                     material_cost: "",
                     maintenance_cost: "",
                     offer: "",
                     order_state: "",
-                    order_type: "",
-                    name: '',
-                    date: '',
-                    address: ''
+                    order_type: ""
                 },
                 total: 10,
                 currentPage: 0,
@@ -151,7 +270,6 @@
         methods: {
             // 分页导航
             handleCurrentChange(val) {
-                console.log("----第几页----" + val);
                 this.cur_page = val;
                 this.getData();
             },
@@ -159,12 +277,13 @@
             // 获取所有待处理维修单
             getData() {
                 //查询所有的待处理维修单
-                api.getOrder(this.cur_page, this.pageSize, {"order_state": "waitting"}).then(res => {
+                api.getOrder(this.cur_page, this.pageSize, {"$or": [{"order_state": "pending"}, {"order_state": "repairing"}]}).then(res => {
                     this.tableData = res.data.data;
                     this.total = res.data.total;
 
                 })
             },
+            //搜索
             search() {
                 this.is_search = true;
                 //选择请选择查询全部否则按条件查询
@@ -173,7 +292,11 @@
                 } else {
                     var selectCate = this.select_cate;//下拉框值
                     var selectWord = this.select_word;//输入框的值
-                    var param = {[selectCate]: selectWord, "order_state": "waitting"}
+                    var param = {
+                        [selectCate]: selectWord,
+                        "$or": [{"order_state": "pending"}, {"order_state": "repairing"}]
+                    }
+                    //请求搜索接口
                     api.getOrder(this.page, this.pageSize, param)
                         .then(res => {
                             this.tableData = res.data.data;
@@ -181,8 +304,8 @@
                         })
                 }
             },
+            //显示大图片
             bigImg(imgUrl) {
-                console.log("-----------" + imgUrl);
                 this.imgSrc = imgUrl;
                 this.showFlag = true;
             },
@@ -195,30 +318,80 @@
             //选择人员
             onRadioChange(item) {
                 console.log("item", item);
-                this.resource=item;
+                console.log("----" + this.user_list[item].telephone_number);
+                this.form.staff_tel = this.user_list[item].telephone_number;
+                this.form.staff_name = this.user_list[item].maintenance_name;
             },
             // 保存分配人員
             saveEdit() {
                 //this.$set(this.tableData, this.idx, this.form);
+                console.log(this.idx + "this.idx");
+
+
+                console.log("---staff_tel--" + this.form.staff_tel);
+                console.log("---this._id--" + this.form._id);
+                console.log("--ssss-" + moment(new Date()).format("YYYY-MM-DD HH:mm:ss"));
+
+                const item = this.tableData[this.idx];
+                var id = this.form._id;
+                var param = {
+                    content: item.content,
+                    date: this.form.date,
+                    maintenance_cost: item.maintenance_cost,
+                    material_cost: item.material_cost,
+                    offer: item.offer,
+                    order_state: "repairing",
+                    order_type: item.order_type,
+                    picture: item.picture,
+                    repair_place: item.repair_place,
+                    staff_name: this.form.staff_name,
+                    staff_tel: this.form.staff_tel
+                };
+                console.log(param);
+                //执行更新操作
+                api.updateOrder(id, param)
+                    .then(res => {
+                        console.log(res);
+                        //需要执行
+                        this.$message.success("派单成功");
+                        this.getData();
+                    });
                 this.editVisible = false;
-                this.$message.success(`第 ${this.idx + 1}行 分配給 ${this.user_list[this.resource].maintenance_name}`);
+
             },
             //订单分配人员
             distributionEdit(index, row) {
                 this.idx = index;
                 const item = this.tableData[index];
+                console.log("---item._id--" + item._id);
                 this.form = {
-                    name: item.name,
-                    date: item.date,
-                    address: item.address
+                    _id: item._id,
+                    repair_place: item.repair_place,
+                    content: item.content,
+                    staff_tel: item.staff_tel,
+                    staff_name: item.staff_name,
+                    date: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+                    picture: item.picture,
+                    material_cost: item.material_cost,
+                    maintenance_cost: item.maintenance_cost,
+                    offer: item.offer,
+                    order_state: item.order_state,
+                    order_type: item.order_type
                 };
+                //获取所有的维修工人员信息
                 api.getAllMaintenance()
                     .then(res => {
                         console.log(res.data.success);
-                        if(res.data.success){
-                            this.user_list=res.data.data;
+                        if (res.data.success) {
+                            this.user_list = res.data.data;
+                            if (this.user_list.length > 0) {
+                                this.form.staff_name = this.user_list[0].maintenance_name;
+                                this.form.staff_tel = this.user_list[0].telephone_number;
+                            }
+
                         }
-                    })
+                    });
+
 
                 this.editVisible = true;
             },

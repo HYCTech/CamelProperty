@@ -14,3 +14,8 @@ export const getOrder = (page,prepage,filter) => {
 export const getAllMaintenance = () =>{
     return axios.get(`${base}/api/maintenance`)
 }
+
+//修改维修单
+export const updateOrder = (id,params) => {
+    return axios.put(`${base}/api/order/${id}`,params);
+}
