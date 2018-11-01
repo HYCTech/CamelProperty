@@ -19,3 +19,9 @@ export const getAllMaintenance = () =>{
 export const updateOrder = (id,params) => {
     return axios.put(`${base}/api/order/${id}`,params);
 }
+
+//发送报价 http://api.yx101.cn/hycDevelop/send/price
+//{"title":"维修价格","orderId":"154105374726676","content":"门出问题了","openID":"oQBciw2BV7CxY7zAxkx-yzEboppI","order_id":"5bda9d33a8cb963909ccf484"}
+export const sendPrices = (params) => {
+    return axios.post(`${base}/send/price`,params)
+}

@@ -6,6 +6,7 @@
             </el-breadcrumb>
         </div>
         <div class="container">
+
             <div class="handle-box">
 
                 <el-select v-model="select_cate" placeholder="请选择" class="handle-select mr10">
@@ -48,27 +49,31 @@
                         <span v-show="scope.row.picture.length==0">用户没有上传图片</span>
                     </template>
                 </el-table-column>
-                <el-table-column prop="material_cost" label="材料费">
+                <el-table-column prop="material_cost" label="材料费（元）">
                 </el-table-column>
-                <el-table-column prop="maintenance_cost" label="维修费">
+                <el-table-column prop="maintenance_cost" label="维修费（元）">
                 </el-table-column>
-                <el-table-column prop="offer" label="合计">
+                <el-table-column prop="offer" label="合计（元）">
                 </el-table-column>
-                <el-table-column prop="order_state" label="接单状态" width="120">
+                <!--<el-table-column prop="order_state" label="接单状态" width="120">
                     <template slot-scope="scope">
                         <span>{{scope.row.order_state=="pending"?"待接单中":"已接单"}}</span>
                     </template>
-                </el-table-column>
-                <el-table-column label="操作">
+                </el-table-column>-->
+                <el-table-column label="派单操作">
                     <template slot-scope="scope">
                         <div v-if="scope.row.order_state=='pending'">
                             <el-button type="text" icon="el-icon-edit"
-                                       @click="distributionEdit(scope.$index, scope.row)">
+                                       @click="distributionEdit(scope.$index, scope.row,false)">
                                 订单派送
                             </el-button>
                         </div>
                         <div v-else>
-                            订单已派送
+
+                            <el-button type="text" icon="el-icon-printer"
+                                       @click="distributionEdit(scope.$index, scope.row,true)">
+                                打印派单
+                            </el-button>
                         </div>
 
                     </template>
@@ -81,19 +86,6 @@
                 </el-pagination>
             </div>
         </div>
-
-        <!-- 派单人员列表 -->
-        <!--        <el-dialog title="人员列表" :visible.sync="editVisible" width="30%">
-
-                    <el-radio-group v-model="radio" @change="onRadioChange">
-                        <el-radio :label="index" :key="item._id" v-for="(item,index) in user_list">{{item.maintenance_name}}</el-radio>
-                    </el-radio-group>
-
-                    <span slot="footer" class="dialog-footer">
-                        <el-button @click="editVisible = false">取 消</el-button>
-                        <el-button type="primary" @click="saveEdit">确 定</el-button>
-                    </span>
-                </el-dialog>-->
 
         <!--显示大图-->
         <div class="dial-header">
@@ -108,90 +100,118 @@
             </el-dialog>
         </div>
 
-        <!-- 派单选择人员 弹出框 -->
-        <el-dialog title="订单派送" :visible.sync="editVisible">
-            <el-form :model="form" label-width="80px" ref="ruleForm">
-                <el-form-item label="维修位置 :" prop="repair_place">
-                    {{form.repair_place}}
-                </el-form-item>
-                <el-form-item label="类型:" prop="order_type">
-                    {{form.order_type=="personal"?"个人":"公共"}}
-                </el-form-item>
-                <el-form-item label="接单状态:" prop="order_state">
-                    {{"待接单中"}}
-                </el-form-item>
-                <el-row>
-                    <el-col :span="8">
-                        <el-form-item label="接单员:" prop="staff_name">
-                            <el-select v-model="form.staff_name" placeholder="请选择" @change="onRadioChange">
-                                <el-option :label="item.maintenance_name" :value="index"
-                                           v-for="(item,index) in user_list" :key="index"></el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="3">
-                        &nbsp;
-                    </el-col>
-                    <el-col :span="3">
-                        <el-form-item label="联系方式:" prop="staff_tel">
-                            {{form.staff_tel}}
-                        </el-form-item>
-                    </el-col>
-                </el-row>
 
-                <el-row>
-                    <el-col :span="8">
-                        <el-form-item label="接单时间:" prop="date">
-                            {{form.date}}
+        <!-- 派单 弹出框 -->
+        <el-dialog title="订单派送" :visible.sync="editVisible" @close='closeDistribution'>
+            <div id="printTest">
+                <el-form :model="form" label-width="80px" ref="ruleForm">
+                    <el-form-item label="维修位置 :" prop="repair_place">
+                        {{form.repair_place}}
+                    </el-form-item>
+                    <el-form-item label="类型:" prop="order_type">
+                        {{form.order_type=="personal"?"个人":"公共"}}
+                    </el-form-item>
+                    <el-form-item label="接单状态:" prop="order_state">
+                        {{"待接单中"}}
+                    </el-form-item>
+                    <el-row>
+                        <el-col :span="8">
 
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="3">
-                        &nbsp;
-                    </el-col>
-                    <el-col :span="8">
-                        <el-form-item label="完成时间:" prop="staff_tel">
-                            <el-select v-model="duration">
-                                <el-option v-for="item in options" :key="item.value" :value="item.value"
-                                           :label="item.label"></el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="8">
-                        <el-form-item label="材料费:" prop="material_cost">
-                            {{form.material_cost}}
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-form-item label="维修费:" prop="maintenance_cost">
-                            {{form.maintenance_cost}}
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-form-item label="报价:" prop="offer">
-                            {{form.offer}}
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-form-item label="内容:" prop="content">
-                    {{form.content}}
-                </el-form-item>
-                <el-form-item label="图片:">
-                    <template slot-scope="scope">
-                        <div v-if="form.picture.length>0">
-                            <img :src="form.picture[0].minFilename" style="width:210px;height:150px;">
-                        </div>
-                        <span v-show="form.picture.length==0">用户没有上传图片</span>
-                    </template>
-                </el-form-item>
+                            <div v-if="primaryVisble">
+                                <el-form-item label="接单员:" prop="staff_name">
+                                    {{form.staff_name}}
+                                </el-form-item>
+                            </div>
+                            <div v-else>
+                                <el-form-item label="接单员:" prop="staff_name">
+                                    <el-select v-model="form.staff_name" placeholder="请选择" @change="onRadioChange">
+                                        <el-option :label="item.maintenance_name" :value="index"
+                                                   v-for="(item,index) in user_list" :key="index"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
 
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
+
+                        </el-col>
+                        <el-col :span="3">
+                            &nbsp;
+                        </el-col>
+                        <el-col :span="3">
+                            <el-form-item label="联系方式:" prop="staff_tel">
+                                {{form.staff_tel}}
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+                    <el-row>
+                        <el-col :span="8">
+                            <el-form-item label="接单时间:" prop="date">
+                                {{form.date}}
+
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="3">
+                            &nbsp;
+                        </el-col>
+                        <el-col :span="8">
+                            <div v-if="primaryVisble">
+                                <el-form-item label="完成时间:" prop="staff_tel">
+                                    {{duration}}
+                                </el-form-item>
+                            </div>
+                            <div v-else>
+                                <el-form-item label="完成时间:" prop="staff_tel">
+                                    <el-select v-model="duration">
+                                        <el-option v-for="item in options" :key="item.value" :value="item.value"
+                                                   :label="item.label"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="8">
+                            <el-form-item label="材料费:" prop="material_cost">
+                                {{form.material_cost}} 元
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-form-item label="维修费:" prop="maintenance_cost">
+                                {{form.maintenance_cost}} 元
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-form-item label="合计报价:" prop="offer">
+                                {{form.offer}} 元
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-form-item label="内容:" prop="content">
+                        {{form.content}}
+                    </el-form-item>
+                    <el-form-item label="图片:">
+                        <template slot-scope="scope">
+                            <div v-if="form.picture.length>0">
+                                <img :src="form.picture[0].minFilename" style="width:280px;height:180px;">
+                            </div>
+                            <span v-show="form.picture.length==0">用户没有上传图片</span>
+                        </template>
+                    </el-form-item>
+
+                </el-form>
             </div>
+
+            <div slot="footer" class="dialog-footer">
+                <div v-if="primaryVisble">
+                    <el-button @click="closeDistribution">取 消</el-button>
+                    <el-button v-print="'#printTest'">打印</el-button>
+                </div>
+                <div v-else>
+                    <el-button @click="editVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="saveEdit">确 定</el-button>
+                </div>
+            </div>
+
         </el-dialog>
     </div>
 </template>
@@ -202,11 +222,10 @@
     import moment from 'moment';
 
     export default {
-        name: 'basetable',
-
         data() {
             return {
 
+                primaryVisble: false,
                 resource: '',
                 dialogVisible: false,
                 imgSrc: "",
@@ -224,22 +243,22 @@
                 delVisible: false,
                 user_list: [],
                 options: [{
-                    value: '1',
+                    value: '1小时',
                     label: '1小时'
                 }, {
-                    value: '2',
+                    value: '2小时',
                     label: '2小时'
                 }, {
-                    value: '3',
+                    value: '3小时',
                     label: '3小时'
                 }, {
-                    value: '4',
+                    value: '半天',
                     label: '半天'
                 }, {
-                    value: '5',
+                    value: '一天',
                     label: '一天'
                 }],
-                duration: "1",
+                duration: "1小时",
                 form: {
                     _id: "",
                     openID: "",
@@ -315,10 +334,15 @@
                 this.imgSrc = "";
                 this.showFlag = false;
             },
+            //取消打印
+            closeDistribution() {
+                this.getData();
+                this.editVisible = false;
+            },
             //选择人员
             onRadioChange(item) {
-                console.log("item", item);
-                console.log("----" + this.user_list[item].telephone_number);
+                //console.log("item", item);
+                //console.log("----" + this.user_list[item].telephone_number);
                 this.form.staff_tel = this.user_list[item].telephone_number;
                 this.form.staff_name = this.user_list[item].maintenance_name;
             },
@@ -354,16 +378,18 @@
                         console.log(res);
                         //需要执行
                         this.$message.success("派单成功");
-                        this.getData();
+                        //this.getData();
+                        //显示打印按钮
+                        this.primaryVisble = true;
                     });
-                this.editVisible = false;
+
 
             },
             //订单分配人员
-            distributionEdit(index, row) {
+            distributionEdit(index, row, showPrimary) {
                 this.idx = index;
                 const item = this.tableData[index];
-                console.log("---item._id--" + item._id);
+
                 this.form = {
                     _id: item._id,
                     repair_place: item.repair_place,
@@ -384,7 +410,7 @@
                         console.log(res.data.success);
                         if (res.data.success) {
                             this.user_list = res.data.data;
-                            if (this.user_list.length > 0) {
+                            if (this.user_list.length > 0 && showPrimary == false) {
                                 this.form.staff_name = this.user_list[0].maintenance_name;
                                 this.form.staff_tel = this.user_list[0].telephone_number;
                             }
@@ -392,7 +418,7 @@
                         }
                     });
 
-
+                this.primaryVisble = showPrimary;
                 this.editVisible = true;
             },
             //选择查询类别
@@ -419,30 +445,9 @@
         display: inline-block;
     }
 
-    .del-dialog-cnt {
-        font-size: 16px;
-        text-align: center
-    }
-
     .table {
         width: 100%;
         font-size: 14px;
-    }
-
-    .red {
-        color: #ff0000;
-    }
-
-    .big-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 3000;
-        text-align: center;
-        padding: 5% 0 0 0;
     }
 
     .big-modal img {
