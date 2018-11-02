@@ -204,7 +204,8 @@
             <div slot="footer" class="dialog-footer">
                 <div v-if="primaryVisble">
                     <el-button @click="closeDistribution">取 消</el-button>
-                    <el-button v-print="'#printTest'">打印</el-button>
+                    <el-button  @click="print" >打印</el-button>
+                    <!--<el-button  v-print="'#printTest'">打印</el-button>-->
                 </div>
                 <div v-else>
                     <el-button @click="editVisible = false">取 消</el-button>
@@ -424,6 +425,35 @@
             //选择查询类别
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            //打印功能
+            print(e){
+                // if (!!window.ActiveXObject || "ActiveXObject" in window) { //是否ie
+                //     alert('9090');
+                //     remove_ie_header_and_footer();
+                // }
+                this.remove_ie_header_and_footer();
+                let subOutputRankPrint = document.getElementById('printTest');
+                console.log(subOutputRankPrint.innerHTML);
+                let newContent =subOutputRankPrint.innerHTML;
+                let oldContent = document.body.innerHTML;
+                document.body.innerHTML = newContent;
+                window.print();
+                window.location.reload();
+                document.body.innerHTML = oldContent;
+                return false;
+            },
+
+            //去掉页眉和页脚
+            remove_ie_header_and_footer() {
+                var hkey_path;
+                hkey_path = "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\PageSetup\\";
+                try {
+                    var RegWsh = new ActiveXObject("WScript.Shell");
+                    RegWsh.RegWrite(hkey_path + "header", "");
+                    RegWsh.RegWrite(hkey_path + "footer", "");
+                } catch (e) {
+                }
             }
         },
 
