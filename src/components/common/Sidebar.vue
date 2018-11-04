@@ -48,7 +48,19 @@
                         //icon: 'el-icon-lx-cascades',
                         icon: 'el-icon-news',
                         index: 'waithanding',
-                        title: '公司订单'
+                        title: '订单管理'
+                    },
+                    {
+                        //icon: 'el-icon-lx-cascades',
+                        icon: 'el-icon-goods',
+                        index: 'pendinghanding',
+                        title: '派单管理'
+                    },
+                    {
+                        //icon: 'el-icon-lx-cascades',
+                        icon: 'el-icon-printer',
+                        index: 'repairinghanding',
+                        title: '打印管理'
                     }
                 ]
             }

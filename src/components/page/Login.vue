@@ -4,12 +4,12 @@
             <div class="ms-title">后台管理系统</div>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
-                    <el-input v-model="ruleForm.user" placeholder="username">
+                    <el-input v-model="ruleForm.user" placeholder="账号">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="ruleForm.pwd" @keyup.enter.native="submitForm('ruleForm')">
+                    <el-input type="password" placeholder="密码" v-model="ruleForm.pwd" @keyup.enter.native="submitForm('ruleForm')">
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
                 </el-form-item>
@@ -23,14 +23,15 @@
 </template>
 
 <script>
+
     import {requestLogin} from '@/api/index.js';
     import md5 from "js-md5";
     export default {
         data: function(){
             return {
                 ruleForm: {
-                    user: 'luban',
-                    pwd: '123456'
+                    user: '',
+                    pwd: ''
                 },
                 rules: {
                     user: [

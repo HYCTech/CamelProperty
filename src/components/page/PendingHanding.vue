@@ -1,3 +1,4 @@
+<!--分配订单-->
 <template>
     <div class="table">
         <!--<div class="crumbs">
@@ -11,9 +12,8 @@
 
                 <el-select v-model="select_cate" placeholder="请选择" class="handle-select mr10">
                     <el-option key="1" label="请选择" value=""></el-option>
-                    <el-option key="2" label="姓名" value="staff_name"></el-option>
+                    <el-option key="2" label="单号" value="orderId"></el-option>
                     <el-option key="3" label="维修位置" value="repair_place"></el-option>
-                    <el-option key="4" label="电话号码" value="staff_tel"></el-option>
                 </el-select>
                 <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
@@ -297,7 +297,7 @@
             // 获取所有待处理维修单
             getData() {
                 //查询所有的待处理维修单
-                api.getOrder(this.cur_page, this.pageSize, {"$or": [{"order_state": "pending"}, {"order_state": "repairing"}]}).then(res => {
+                api.getOrder(this.cur_page, this.pageSize, {"$or": [{"order_state": "pending"}]}).then(res => {
                     this.tableData = res.data.data;
                     this.total = res.data.total;
 
@@ -314,7 +314,7 @@
                     var selectWord = this.select_word;//输入框的值
                     var param = {
                         [selectCate]: selectWord,
-                        "$or": [{"order_state": "pending"}, {"order_state": "repairing"}]
+                        "$or": [{"order_state": "pending"}]
                     }
                     //请求搜索接口
                     api.getOrder(this.page, this.pageSize, param)

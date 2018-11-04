@@ -24,7 +24,17 @@ export default new Router({
                     path: '/waithanding',
                     //component: resolve => require(['../components/page/BaseTable.vue'], resolve),
                     component: resolve => require(['../components/page/WaitHanding.vue'], resolve),
-                    meta: { title: '公司订单查询' }
+                    meta: { title: '订单管理' }
+                },
+                {
+                    path: '/pendinghanding',
+                    component: resolve => require(['../components/page/PendingHanding.vue'], resolve),
+                    meta: { title: '派单管理' }
+                },
+                {
+                    path: '/repairinghanding',
+                    component: resolve => require(['../components/page/RepairingHanding.vue'], resolve),
+                    meta: { title: '打印管理' }
                 }
             ]
         },

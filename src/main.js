@@ -9,6 +9,8 @@ import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
 import '../static/css/icon.css';
 import "babel-polyfill";
 import Print from 'vue-print-nb'
+import $ from 'jquery'
+
 Vue.use(Print);  //注册
 Vue.use(ElementUI, { size: 'small' });
 Vue.prototype.$axios = axios;

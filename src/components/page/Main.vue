@@ -1,104 +1,59 @@
 <template>
     <div>
-        <el-row type="flex" justify="center">
+
+        <el-row>
+            <el-col :span="24">
+                <div class="grid-content bg-purple-dark">
+                    <div style="margin:0 auto; ">
+                        <img src="static/img/img.jpg" class="user-avator" alt="">
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+
+        <el-row>
+            <el-col :span="24">
+                <div class="user-content bg-purple-dark">
+                    <el-row class="community-name">中城名仕汇</el-row>
+                    <el-row class="community-phone">联系电话：133XXXXX8326</el-row>
+                    <el-row class="community-ip">公网IP地址：{{ip}}</el-row>
+                </div>
+            </el-col>
+        </el-row>
+        <!--<el-row type="flex" justify="center">
             <el-col>
                 <el-card shadow="hover" class="mgb20" style="height:252px;">
-                    <div class="user-info">
+                    <div  class="user-info" style="margin:0 auto">
                         <img src="static/img/img.jpg" class="user-avator" alt="">
                         <div class="user-info-cont">
                             <div class="user-info-name">{{name}}</div>
                             <div>{{role}}</div>
                         </div>
                     </div>
-                    <!--<div class="user-info-list">上次登录时间：<span>2018-11-01</span></div>-->
+                    &lt;!&ndash;<div class="user-info-list">上次登录时间：<span>2018-11-01</span></div>&ndash;&gt;
                     <div class="user-info-list">上次登录地点：<span>福州</span></div>
                 </el-card>
 
             </el-col>
 
-        </el-row>
+        </el-row>-->
 
     </div>
 </template>
 
 <script>
+
+    import axios from 'axios';
     import Schart from 'vue-schart';
     import bus from '../common/bus';
 
+
     export default {
-        name: 'dashboard',
+        name: '',
+        ip: "",
         data() {
             return {
                 name: localStorage.getItem('ms_username'),
-                todoList: [{
-                    title: '今天要修复100个bug',
-                    status: false,
-                },
-                    {
-                        title: '今天要修复100个bug',
-                        status: false,
-                    },
-                    {
-                        title: '今天要写100行代码加几个bug吧',
-                        status: false,
-                    }, {
-                        title: '今天要修复100个bug',
-                        status: false,
-                    },
-                    {
-                        title: '今天要修复100个bug',
-                        status: true,
-                    },
-                    {
-                        title: '今天要写100行代码加几个bug吧',
-                        status: true,
-                    }
-                ],
-                data: [{
-                    name: '2018/09/04',
-                    value: 1083
-                },
-                    {
-                        name: '2018/09/05',
-                        value: 941
-                    },
-                    {
-                        name: '2018/09/06',
-                        value: 1139
-                    },
-                    {
-                        name: '2018/09/07',
-                        value: 816
-                    },
-                    {
-                        name: '2018/09/08',
-                        value: 327
-                    },
-                    {
-                        name: '2018/09/09',
-                        value: 228
-                    },
-                    {
-                        name: '2018/09/10',
-                        value: 1065
-                    }
-                ],
-                options: {
-                    title: '最近七天每天的用户访问量',
-                    showValue: false,
-                    fillColor: 'rgb(45, 140, 240)',
-                    bottomPadding: 30,
-                    topPadding: 30
-                },
-                options2: {
-                    title: '最近七天用户访问趋势',
-                    fillColor: '#FC6FA1',
-                    axisColor: '#008ACD',
-                    contentColor: '#EEEEEE',
-                    bgColor: '#F5F8FD',
-                    bottomPadding: 30,
-                    topPadding: 30
-                }
             }
         },
         components: {
@@ -106,21 +61,32 @@
         },
         computed: {
             role() {
-                return this.name === 'admin' ? '超级管理员' : '普通用户';
+
+                return this.name === 'luban' ? '超级管理员' : '普通用户';
             }
         },
+
         created() {
-            this.handleListener();
-            this.changeDate();
+            //获取公网IP地址
+            //console.log(returnCitySN["cip"] + ',' + returnCitySN["cname"])
+            this.ip=returnCitySN["cip"];
+
         },
         activated() {
-            this.handleListener();
+            //this.handleListener();
         },
         deactivated() {
             window.removeEventListener('resize', this.renderChart);
             bus.$off('collapse', this.handleBus);
         },
         methods: {
+
+            onOffline() {
+                let networkState = navigator.connection.type;
+                if (networkState === Connection.NONE) {
+                    alert('主人，又没网络啦')
+                }
+            },
             changeDate() {
                 const now = new Date().getTime();
                 this.data.forEach((item, index) => {
@@ -149,59 +115,70 @@
 
 
 <style scoped>
+
     .el-row {
         margin-bottom: 20px;
+
+    }
+
+    .last-child {
+        margin-bottom: 0;
+    }
+
+    .el-col {
+        border-radius: 4px;
+    }
+
+    .bg-purple-dark {
+        background: white;
+    }
+
+    .bg-purple {
+        background: #d3dce6;
+    }
+
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+
+    .grid-content {
+        border-radius: 4px;
+
+        text-align: center;
+    }
+
+    .user-content {
+        border-radius: 4px;
+        min-height: 100%;
+        text-align: center;
+    }
+
+    .community-name {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 26px;
+    }
+
+    .community-phone {
+
+        padding-bottom: 20px;
+        font-size: 26px;
+    }
+    .community-ip{
+        padding-bottom: 110px;
+        font-size: 26px;
+    }
+
+    .row-bg {
+        padding: 10px 0;
+        background-color: #f9fafc;
     }
 
     .grid-content {
         display: flex;
         align-items: center;
-        height: 100px;
-    }
-
-    .grid-cont-right {
-        flex: 1;
-        text-align: center;
-        font-size: 14px;
-        color: #999;
-    }
-
-    .grid-num {
-        font-size: 30px;
-        font-weight: bold;
-    }
-
-    .grid-con-icon {
-        font-size: 50px;
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        line-height: 100px;
-        color: #fff;
-    }
-
-    .grid-con-1 .grid-con-icon {
-        background: rgb(45, 140, 240);
-    }
-
-    .grid-con-1 .grid-num {
-        color: rgb(45, 140, 240);
-    }
-
-    .grid-con-2 .grid-con-icon {
-        background: rgb(100, 213, 114);
-    }
-
-    .grid-con-2 .grid-num {
-        color: rgb(45, 140, 240);
-    }
-
-    .grid-con-3 .grid-con-icon {
-        background: rgb(242, 94, 67);
-    }
-
-    .grid-con-3 .grid-num {
-        color: rgb(242, 94, 67);
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .user-info {
@@ -213,9 +190,10 @@
     }
 
     .user-avator {
-        width: 120px;
-        height: 120px;
+        width: 280px;
+        height: 280px;
         border-radius: 50%;
+
     }
 
     .user-info-cont {
@@ -244,18 +222,5 @@
         margin-bottom: 20px;
     }
 
-    .todo-item {
-        font-size: 14px;
-    }
-
-    .todo-item-del {
-        text-decoration: line-through;
-        color: #999;
-    }
-
-    .schart {
-        width: 100%;
-        height: 300px;
-    }
 
 </style>
