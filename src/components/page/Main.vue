@@ -5,7 +5,8 @@
             <el-col :span="24">
                 <div class="grid-content bg-purple-dark">
                     <div style="margin:0 auto; ">
-                        <img src="static/img/img.jpg" class="user-avator" alt="">
+                        <!-- <img src="static/img/img.jpg" class="user-avator" alt=""> -->
+                        <img src="static/img/img.jpg" alt=""> 
                     </div>
                 </div>
             </el-col>
