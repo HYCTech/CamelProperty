@@ -27,3 +27,18 @@ export const updateOrder = (id,params) => {
 export const sendPrices = (params) => {
     return axios.post(`${base}/send/price`,params)
 }
+
+//添加基本信息
+export const addBasic = (params) => {
+    return axios.post(`${base}/api/basic`,params);
+}
+
+//获取基本信息
+export const getBasic = () =>{
+    return axios.get(`${base}/api/basic`)
+}
+
+//修改基本信息
+export const updateBasicInfo = (id,data) => {
+    return axios.put(`${base}/api/basic/${id}`,data);
+};

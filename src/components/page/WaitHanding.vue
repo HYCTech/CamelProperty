@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-popover="http://www.w3.org/1999/xhtml">
     <div class="table">
 
         <div class="container">
@@ -35,12 +35,22 @@
                 </el-table-column>
                 <el-table-column prop="picture" label="图片">
                     <template slot-scope="scope">
-                        <div v-if="scope.row.picture.length>0">
 
-                            <img :src="scope.row.picture[0].minFilename" @click="bigImg(scope.row.picture[0].filename)"
-                                 style="width:80px;height:100px;"
-                                 alt="点击查看大图" title="点击查看大图"
-                                 　>
+                        <div v-if="scope.row.picture.length>0">
+                            <el-popover
+                                placement="top-start"
+                                title="大图"
+                                width="200"
+                                trigger="hover"
+                                content="">
+                                <img :src="item.minFilename" title="点击查看大图" style="width:80px;height:100px;"
+                                     @click="bigImg(item.filename)" class="img-item" alt=""
+                                     v-for="(item) in scope.row.picture">
+
+                                <el-button slot="reference"><img :src="scope.row.picture[0].minFilename"
+                                                                 style="width:60px;height:100px;"
+                                                                 v-popover:popover></el-button>
+                            </el-popover>
                         </div>
                         <span v-show="scope.row.picture.length==0">用户没有上传图片</span>
                     </template>

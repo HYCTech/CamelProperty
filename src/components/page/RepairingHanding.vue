@@ -50,7 +50,7 @@
                                 width="200"
                                 trigger="hover"
                                 content="">
-                                <img :src="item.minFilename" title="点击查看大图" style="width:60px;height:100px;"
+                                <img :src="item.minFilename" title="点击查看大图" style="width:80px;height:100px;"
                                      @click="bigImg(item.filename)" class="img-item" alt=""
                                      v-for="(item) in scope.row.picture">
 
