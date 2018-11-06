@@ -1,5 +1,5 @@
 <!--分配订单-->
-<template>
+<template xmlns:v-popover="http://www.w3.org/1999/xhtml">
     <div class="table">
         <!--<div class="crumbs">
             <el-breadcrumb separator="/">
@@ -38,13 +38,23 @@
                 <el-table-column prop="content" label="内容">
                 </el-table-column>
                 <el-table-column prop="picture" label="图片">
+
                     <template slot-scope="scope">
                         <div v-if="scope.row.picture.length>0">
+                            <el-popover
+                                placement="top-start"
+                                title="大图"
+                                width="200"
+                                trigger="hover"
+                                content="">
+                                <img :src="item.minFilename" title="点击查看大图" style="width:60px;height:100px;"
+                                     @click="bigImg(item.filename)" class="img-item" alt=""
+                                     v-for="(item) in scope.row.picture">
 
-                            <img :src="scope.row.picture[0].minFilename" @click="bigImg(scope.row.picture[0].filename)"
-                                 style="width:80px;height:100px;"
-                                 alt="点击查看大图" title="点击查看大图"
-                                 　>
+                                <el-button slot="reference"><img :src="scope.row.picture[0].minFilename"
+                                                                 style="width:60px;height:100px;"
+                                                                 v-popover:popover></el-button>
+                            </el-popover>
                         </div>
                         <span v-show="scope.row.picture.length==0">用户没有上传图片</span>
                     </template>
@@ -104,6 +114,215 @@
         <!-- 派单 弹出框 -->
         <el-dialog title="订单派送" :visible.sync="editVisible" @close='closeDistribution'>
             <div id="printTest">
+                <div v-if="primaryVisble">
+                    <div class="title-top">管理处（入户）维修派工单</div>
+                    <el-form :model="form" label-width="80px" ref="ruleForm" style="border:1px solid black;">
+                        <el-row>
+                            <el-col class="col-title">
+                                派工单
+                            </el-col>
+                        </el-row>
+
+                        <hr>
+
+                        <el-row>
+                            <el-col :span="8">
+                                &nbsp;编号:
+                            </el-col>
+                            <el-col :span="8">
+                                <div v-if="form.order_type=='personal'?true:false"><img src="../../assets/checked.png"
+                                                                                        height="15" width="15"/> 有偿
+                                </div>
+                                <div v-if="form.order_type=='personal'?false:true"> 有偿</div>
+
+                            </el-col>
+                            <el-col :span="8">
+                                <div v-if="form.order_type=='personal'?false:true"><img src="../../assets/checked.png"
+                                                                                        height="15" width="15"/> 公共
+                                </div>
+                                <div v-if="form.order_type=='personal'?true:false"> 公共</div>
+                            </el-col>
+                        </el-row>
+
+                        <hr>
+                        <el-row>
+                            <el-col :span="8">
+                                &nbsp;接修约定时间:
+                            </el-col>
+                            <el-col :span="16">
+                                {{form.date}}
+                            </el-col>
+                        </el-row>
+                        <hr>
+                        <el-row>
+                            <el-col :span="8">
+                                &nbsp;实际到达维修时间:
+                            </el-col>
+                            <el-col :span="2">
+                                年
+                            </el-col>
+                            <el-col :span="2">
+                                月
+                            </el-col>
+                            <el-col :span="2">
+                                日
+                            </el-col>
+                            <el-col :span="2">
+                                时
+                            </el-col>
+                            <el-col :span="2">
+                                分
+                            </el-col>
+                        </el-row>
+                        <hr>
+                        <el-row>
+                            <el-col :span="4">
+                                &nbsp;修复情况:
+                            </el-col>
+                            <el-col :span="3">
+                                <el-checkbox v-model="checked">已修复</el-checkbox>
+                            </el-col>
+                            <el-col :span="3">
+                                <el-checkbox v-model="checked">未修复</el-checkbox>
+                            </el-col>
+                            <el-col :span="8">
+                                未修复原因：
+                            </el-col>
+
+                        </el-row>
+                        <hr>
+
+                        <el-row style="margin-bottom: 10px">
+                            <el-col :span="4">
+                                &nbsp;维修内容：
+                            </el-col>
+                            <el-col :span="12">
+                                维修所在的位置{{form.repair_place}}，主要维修原因是{{form.content}}
+                            </el-col>
+
+                        </el-row>
+                        <el-row>
+                            <el-col :span="8">
+                                &nbsp;用工、用料及费用：
+                            </el-col>
+
+                        </el-row>
+                        <el-row style="margin-bottom: 10px;margin-top: 10px">
+                            <el-col :span="4">
+                                &nbsp;
+                            </el-col>
+                            <el-col :span="14">
+                                材料费：{{form.material_cost}} 元；维修费：{{form.maintenance_cost}} 元；合计费用：{{form.offer}} 元
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :span="10">
+                                &nbsp;维修人员签字：
+                            </el-col>
+                            <el-col :span="4">
+                                完成时间：
+                            </el-col>
+                            <el-col :span="2">
+                                年
+                            </el-col>
+                            <el-col :span="2">
+                                月
+                            </el-col>
+                            <el-col :span="2">
+                                日
+                            </el-col>
+                            <el-col :span="2">
+                                时
+                            </el-col>
+                            <el-col :span="2">
+                                分
+                            </el-col>
+                        </el-row>
+                        <hr>
+                        <el-row style="margin-bottom: 30px">
+                            <el-col :span="8">
+                                &nbsp;其他反馈意见：
+                            </el-col>
+
+
+                        </el-row>
+                        <el-row>
+                            <el-col :span="10">
+                                &nbsp;
+                            </el-col>
+                            <el-col :span="8">
+                                业主签字：
+                            </el-col>
+                            <el-col :span="2">
+                                年
+                            </el-col>
+                            <el-col :span="2">
+                                月
+                            </el-col>
+                            <el-col :span="2">
+                                日
+                            </el-col>
+
+                        </el-row>
+                        <hr>
+                        <el-row>
+                            <el-col :span="10">
+                                &nbsp;主管回访：
+                            </el-col>
+                            <el-col :span="4">
+                                时间：
+                            </el-col>
+                            <el-col :span="2">
+                                年
+                            </el-col>
+                            <el-col :span="2">
+                                月
+                            </el-col>
+                            <el-col :span="2">
+                                日
+                            </el-col>
+                            <el-col :span="2">
+                                时
+                            </el-col>
+                            <el-col :span="2">
+                                分
+                            </el-col>
+                            <el-col :span="10">
+                                &nbsp;主任回访：
+                            </el-col>
+                            <el-col :span="4">
+                                时间：
+                            </el-col>
+                            <el-col :span="2">
+                                年
+                            </el-col>
+                            <el-col :span="2">
+                                月
+                            </el-col>
+                            <el-col :span="2">
+                                日
+                            </el-col>
+                            <el-col :span="2">
+                                时
+                            </el-col>
+                            <el-col :span="2">
+                                分
+                            </el-col>
+                        </el-row>
+                        <hr>
+                        <el-row>
+                            <el-col>
+                                &nbsp;备注：
+                            </el-col>
+                            <el-col style="height: 250px">
+
+                            </el-col>
+                        </el-row>
+
+                    </el-form>
+                </div>
+                <div v-else>
                 <el-form :model="form" label-width="80px" ref="ruleForm">
                     <el-form-item label="维修位置 :" prop="repair_place">
                         {{form.repair_place}}
@@ -155,12 +374,12 @@
                         </el-col>
                         <el-col :span="8">
                             <div v-if="primaryVisble">
-                                <el-form-item label="完成时间:" prop="staff_tel">
+                                <el-form-item label="计划完成时间:" prop="staff_tel">
                                     {{duration}}
                                 </el-form-item>
                             </div>
                             <div v-else>
-                                <el-form-item label="完成时间:" prop="staff_tel">
+                                <el-form-item label="计划完成时间:" prop="staff_tel">
                                     <el-select v-model="duration">
                                         <el-option v-for="item in options" :key="item.value" :value="item.value"
                                                    :label="item.label"></el-option>
@@ -199,6 +418,9 @@
                     </el-form-item>
 
                 </el-form>
+                </div>
+
+
             </div>
 
             <div slot="footer" class="dialog-footer">
@@ -215,9 +437,12 @@
 
         </el-dialog>
     </div>
+
+
 </template>
 
 <script>
+
 
     import * as api from '@/api/index.js';
     import moment from 'moment';
@@ -242,6 +467,7 @@
                 is_search: false,
                 editVisible: false,
                 delVisible: false,
+                checked: false,
                 user_list: [],
                 options: [{
                     value: '1小时',
@@ -285,7 +511,6 @@
         created() {
             this.getData();
         },
-
 
         methods: {
             // 分页导航
@@ -370,7 +595,8 @@
                     picture: item.picture,
                     repair_place: item.repair_place,
                     staff_name: this.form.staff_name,
-                    staff_tel: this.form.staff_tel
+                    staff_tel: this.form.staff_tel,
+                    duration:this.duration
                 };
                 console.log(param);
                 //执行更新操作
@@ -480,5 +706,25 @@
         display: inline-block;
         width: 80%;
         height: 80%;
+    }
+
+    .title-top {
+        padding: 5px;
+        width: 100%;
+        margin: auto;
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .col-title {
+        width: 100%;
+        padding: 5px;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 </style>

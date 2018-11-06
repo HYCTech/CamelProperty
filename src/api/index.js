@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-let base = 'http://api.yx101.cn/hycDevelop';
+//let base = 'http://api.yx101.cn/hycDevelop';//正式接口地址
+let base = 'http://localhost:8888/hycDevelop';//本地測試地址
+
 
 //登录接口
 export const requestLogin = params => { return axios.post(`${base}/login/`, params).then(res => res.data); };
