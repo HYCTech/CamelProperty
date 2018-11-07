@@ -474,6 +474,8 @@
                 duration: "1小时",
                 form: {
                     _id: "",
+                    customer_name:"",
+                    customer_tel:"",
                     openID: "",
                     repair_place: "",
                     content: "",
@@ -554,20 +556,13 @@
             },
             //选择人员
             onRadioChange(item) {
-                //console.log("item", item);
-                //console.log("----" + this.user_list[item].telephone_number);
                 this.form.staff_tel = this.user_list[item].telephone_number;
                 this.form.staff_name = this.user_list[item].maintenance_name;
+                this.form.openID=this.user_list[item].wxopen_id;
             },
             // 保存分配人員
             saveEdit() {
                 //this.$set(this.tableData, this.idx, this.form);
-                console.log(this.idx + "this.idx");
-
-
-                console.log("---staff_tel--" + this.form.staff_tel);
-                console.log("---this._id--" + this.form._id);
-                console.log("--ssss-" + moment(new Date()).format("YYYY-MM-DD HH:mm:ss"));
 
                 const item = this.tableData[this.idx];
                 var id = this.form._id;
@@ -582,20 +577,44 @@
                     picture: item.picture,
                     repair_place: item.repair_place,
                     staff_name: this.form.staff_name,
-                    staff_tel: this.form.staff_tel
+                    staff_tel: this.form.staff_tel,
+                    duration: this.duration
                 };
                 console.log(param);
                 //执行更新操作
                 api.updateOrder(id, param)
                     .then(res => {
-                        console.log(res);
-                        //需要执行
-                        this.$message.success("派单成功");
-                        //this.getData();
-                        //显示打印按钮
-                        this.primaryVisble = true;
-                    });
+                        if(res.data.success){
+                            var sendParam={
+                                title:'派送通知单',
+                                time:moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+                                orderId:item.orderId,
+                                projectName:"维修管理",
+                                userInfo:item.customer_name+"/"+item.customer_tel,
+                                content:item.content,
+                                openID:this.form.openID     //用户的openid
+                            }
+                            console.log(sendParam)
+                            //发送派单信息
+                            api.sendDispatch(sendParam).then(res => {
+                                console.log("sendDispatch:"+res.data.success);
+                                if(res.data.success){
+                                    //需要执行
+                                    this.$message.success("派单成功");
+                                    //this.getData();
+                                    //显示打印按钮
+                                    this.primaryVisble = true;
+                                }else{
+                                    this.$message.error("派单不成功");
+                                }
 
+                            });
+                        }else{
+                            console.log("派单失败");
+                            this.$message.error("派单不成功");
+                        }
+
+                    });
 
             },
             //订单分配人员
@@ -626,6 +645,7 @@
                             if (this.user_list.length > 0 && showPrimary == false) {
                                 this.form.staff_name = this.user_list[0].maintenance_name;
                                 this.form.staff_tel = this.user_list[0].telephone_number;
+                                this.form.openID = this.user_list[0].wxopen_id;
                             }
 
                         }
