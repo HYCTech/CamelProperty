@@ -1,18 +1,14 @@
-'use strict'
-const path = require('path')
-const utils = require('./utils')
-const config = require('../config')
-const vueLoaderConfig = require('./vue-loader.conf')
-var webpack=require("webpack")
+var path = require('path')
+var utils = require('./utils')
+var config = require('../config')
+var webpack = require('webpack')
+var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
-  context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
   },
@@ -28,7 +24,6 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'static': path.resolve(__dirname, '../static'),
     }
   },
   module: {
@@ -69,24 +64,14 @@ module.exports = {
       }
     ]
   },
-  node: {
-    // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
-    setImmediate: false,
-    // prevent webpack from injecting mocks to Node native modules
-    // that does not make sense for the client
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty'
-  },
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common.js'),
-        new webpack.ProvidePlugin({
-            jQuery: "jquery",
-            $: "jquery"
-        })
-    ]
-
+  //打包会出错
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress:{
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true
+      }
+    })
+]
 }

@@ -6,53 +6,33 @@ const path = require('path')
 
 module.exports = {
     dev: {
-
-        // Paths
+        env: require('./dev.env'),
+        port: 8081,
+        autoOpenBrowser: true,
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
             '/api': {
-                target: 'http://jsonplaceholder.typicode.com',
-                changeOrigin: true,
+                target: 'http://localhost:8888/hycDevelop/',
                 pathRewrite: {
-                    '/api': ''
-                }
-            },
-            '/ms': {
-                target: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
-                changeOrigin: true
+                    '^/api': ''
+                },
+                changeOrigin: true,
+                secure:false
+
             }
         },
-        // Various Dev Server settings
-        host: 'localhost', // can be overwritten by process.env.HOST
-        port: 8882, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-        autoOpenBrowser: false,
-        errorOverlay: true,
-        notifyOnErrors: true,
-        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-        productionSourceMap: true,
-
-        /**
-         * Source Maps
-         */
-
-        // https://webpack.js.org/configuration/devtool/#development
-        devtool: 'eval-source-map',
-
-        // If you have problems debugging vue-files in devtools,
-        // set this to false - it *may* help
-        // https://vue-loader.vuejs.org/en/options.html#cachebusting
-        cacheBusting: true,
-
+        // target: 'http://api.yx101.cn/hycDevelop/',
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
         // (https://github.com/webpack/css-loader#sourcemaps)
         // In our experience, they generally work as expected,
         // just be aware of this issue when enabling this option.
-        cssSourceMap: false,
+        cssSourceMap: false
     },
 
     build: {
+        env: require('./prod.env'),
         // Template for index.html
         index: path.resolve(__dirname, '../dist/index.html'),
 
@@ -61,9 +41,7 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: './',
 
-        /**
-         * Source Maps
-         */
+
 
         productionSourceMap: true,
         // https://webpack.js.org/configuration/devtool/#production
