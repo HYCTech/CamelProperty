@@ -35,6 +35,11 @@ export default new Router({
                     path: '/repairinghanding',
                     component: resolve => require(['../components/page/RepairingHanding.vue'], resolve),
                     meta: { title: '打印管理' }
+                },
+                {
+                    path: '/orderhanding',
+                    component: resolve => require(['../components/page/orderHanding.vue'], resolve),
+                    meta: { title: '接单管理' }
                 }
             ]
         },

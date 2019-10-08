@@ -61,6 +61,12 @@
                         icon: 'el-icon-printer',
                         index: 'repairinghanding',
                         title: '打印管理'
+                    },
+                    {
+                        //icon: 'el-icon-lx-cascades',
+                        icon: 'el-icon-message',
+                        index: 'orderhanding',
+                        title: '接单管理'
                     }
                 ]
             }
