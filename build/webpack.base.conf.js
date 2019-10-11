@@ -4,7 +4,7 @@ var config = require('../config')
 var webpack = require('webpack')
 var vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve(dir) {
+function resolve (dir) {
     return path.join(__dirname, '..', dir)
 }
 
@@ -38,7 +38,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [resolve('src'), resolve('test')]
+                include: [resolve('src'), resolve('test'),resolve('/node_modules/iview/src'),resolve('/node_modules/iview/packages')]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -67,13 +67,14 @@ module.exports = {
         ]
     },
     //打包会出错
-    plugins: [
+   /* plugins: [
         new webpack.optimize.UglifyJsPlugin({
-            compress: {
+            compress:{
                 warnings: false,
                 drop_debugger: true,
+                properties: false,
                 drop_console: true
             }
         })
-    ]
+    ]*/
 }

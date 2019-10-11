@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70e1710c-9b44-47bf-9636-7bc49196a987" name="Default" comment="新增派单推送信息到公众号">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/page/InExcel.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/page/orderHanding.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/excel/Blob.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/excel/Export2Excel.js" afterDir="false" />
+    <list default="true" id="70e1710c-9b44-47bf-9636-7bc49196a987" name="Default" comment="服务器代码同步">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/webpack.base.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.base.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +19,8 @@
     <session id="-1290807156">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="2" />
-          <entry key="js" value="65" />
+          <entry key="html" value="3" />
+          <entry key="js" value="71" />
           <entry key="json" value="10" />
           <entry key="png" value="1" />
           <entry key="rnc" value="1" />
@@ -39,10 +30,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="2" />
+          <entry key="HTML" value="3" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="10" />
-          <entry key="JavaScript" value="65" />
+          <entry key="JavaScript" value="71" />
           <entry key="RNG Compact" value="1" />
           <entry key="TypeScript" value="1" />
           <entry key="Vue.js" value="33" />
@@ -51,9 +42,9 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="1" />
-          <entry key="js" value="179" />
+          <entry key="js" value="194" />
           <entry key="json" value="4" />
-          <entry key="txt" value="43" />
+          <entry key="txt" value="57" />
           <entry key="vue" value="4108" />
         </counts>
       </usages-collector>
@@ -61,15 +52,15 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JSON" value="4" />
-          <entry key="JavaScript" value="179" />
-          <entry key="PLAIN_TEXT" value="43" />
+          <entry key="JavaScript" value="194" />
+          <entry key="PLAIN_TEXT" value="57" />
           <entry key="Vue.js" value="4108" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
-          <entry key="project.open.time.1" value="3" />
+          <entry key="project.closed" value="9" />
+          <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.14" value="1" />
@@ -77,7 +68,7 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -95,79 +86,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/PendingHanding.vue">
+        <entry file="file://$PROJECT_DIR$/src/config/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11175">
-              <caret line="447" column="2" selection-start-line="447" selection-start-column="2" selection-end-line="447" selection-end-column="32" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#6237#6243#0" expanded="true" />
-                <element signature="e#7366#7372#0" expanded="true" />
-                <element signature="e#7725#7731#0" expanded="true" />
-                <element signature="e#8549#8555#0" expanded="true" />
-                <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#9260#9266#0" expanded="true" />
-                <element signature="e#9628#9634#0" expanded="true" />
-                <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#9874#9880#0" expanded="true" />
-                <element signature="e#10268#10274#0" expanded="true" />
-                <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#11241#11247#0" expanded="true" />
-                <element signature="e#11442#11448#0" expanded="true" />
-                <element signature="e#12144#12150#0" expanded="true" />
-                <element signature="e#12990#12996#0" expanded="true" />
-                <element signature="e#13921#13927#0" expanded="true" />
-                <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="200">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/page/orderHanding.vue">
+        <entry file="file://$PROJECT_DIR$/build/webpack.base.conf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="646" column="38" selection-start-line="646" selection-start-column="38" selection-end-line="646" selection-end-column="38" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#19360#19398#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="210">
+              <caret line="70" column="43" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/index.js">
+        <entry file="file://$PROJECT_DIR$/node_modules/_source-map@0.5.7@source-map/lib/source-map-consumer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="39" />
+            <state relative-caret-position="139">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/WaitHanding.vue">
+        <entry file="file://$PROJECT_DIR$/node_modules/_uglifyjs-webpack-plugin@0.4.6@uglifyjs-webpack-plugin/dist/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="616" column="23" lean-forward="true" selection-start-line="566" selection-start-column="16" selection-end-line="616" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#19360#19398#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="139">
+              <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/_tapable@0.2.8@tapable/lib/Tapable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="203" column="19" selection-start-line="203" selection-start-column="19" selection-end-line="203" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -191,19 +149,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/InExcel.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -241,8 +190,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>v-if</find>
-      <find>centerDialogVisible</find>
       <find>showLogo</find>
       <find>vHead</find>
       <find>确定</find>
@@ -271,6 +218,8 @@
       <find>staff_name</find>
       <find>repair_place</find>
       <find>staff_tel</find>
+      <find>module</find>
+      <find>webpack.optimize.UglifyJsPlugin</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -309,16 +258,16 @@
         <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/src/excel/Blob.js" />
         <option value="$PROJECT_DIR$/src/excel/Export2Excel.js" />
-        <option value="$PROJECT_DIR$/build/webpack.base.conf.js" />
         <option value="$PROJECT_DIR$/src/components/page/InExcel.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/config/dev.env.js" />
         <option value="$PROJECT_DIR$/config/prod.env.js" />
         <option value="$PROJECT_DIR$/src/api/index.js" />
-        <option value="$PROJECT_DIR$/src/config/index.js" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/components/common/Sidebar.vue" />
         <option value="$PROJECT_DIR$/src/components/page/orderHanding.vue" />
+        <option value="$PROJECT_DIR$/src/config/index.js" />
+        <option value="$PROJECT_DIR$/build/webpack.base.conf.js" />
       </list>
     </option>
   </component>
@@ -373,13 +322,22 @@
             <path>
               <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
               <item name="CamelProperty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CamelProperty" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CamelProperty" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
               <item name="CamelProperty" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
@@ -400,12 +358,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CamelProperty" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CamelProperty" type="b2602c69:ProjectViewProjectNode" />
@@ -495,9 +447,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -531,7 +483,8 @@
       <workItem from="1548136506926" duration="25000" />
       <workItem from="1569652276406" duration="1922000" />
       <workItem from="1569756680257" duration="2429000" />
-      <workItem from="1570517202515" duration="7041000" />
+      <workItem from="1570517202515" duration="8633000" />
+      <workItem from="1570586767681" duration="6435000" />
     </task>
     <task id="LOCAL-00001" summary="修改了派工单表格">
       <created>1541487597954</created>
@@ -554,30 +507,43 @@
       <option name="project" value="LOCAL" />
       <updated>1541578278409</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="新增 接单管理">
+      <created>1570524583609</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1570524583609</updated>
+    </task>
+    <task id="LOCAL-00005" summary="服务器代码同步">
+      <created>1570524735005</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1570524735005</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185554000" />
+    <option name="totallyTimeSpent" value="193581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.66233766" visible="true" weight="0.20174263" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6611418" visible="true" weight="0.20174263" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" sideWeight="0.33766234" side_tool="true" weight="0.20174263" />
+      <window_info active="true" id="npm" order="2" sideWeight="0.3388582" side_tool="true" visible="true" weight="0.20174263" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21134752" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24539007" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.22978723" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.19574468" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.22978723" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33617023" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
@@ -623,13 +589,11 @@
     <MESSAGE value="修改了派工单表格" />
     <MESSAGE value="新增设置首页的基本信息" />
     <MESSAGE value="新增派单推送信息到公众号" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增派单推送信息到公众号" />
+    <MESSAGE value="新增 接单管理" />
+    <MESSAGE value="服务器代码同步" />
+    <option name="LAST_COMMIT_MESSAGE" value="服务器代码同步" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/voteManagement/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/api/repairManagement/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/api/nowUserPeople/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/api/countManagement/index.js" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -797,20 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.base.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="68" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1800">
@@ -818,38 +768,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page/PendingHanding.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11175">
           <caret line="447" column="2" selection-start-line="447" selection-start-column="2" selection-end-line="447" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/InExcel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="48" column="2" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/orderHanding.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16125">
+          <caret line="646" column="38" selection-start-line="646" selection-start-column="38" selection-end-line="646" selection-end-column="38" />
           <folding>
             <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#6237#6243#0" expanded="true" />
-            <element signature="e#7366#7372#0" expanded="true" />
-            <element signature="e#7725#7731#0" expanded="true" />
-            <element signature="e#8549#8555#0" expanded="true" />
             <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#9260#9266#0" expanded="true" />
-            <element signature="e#9628#9634#0" expanded="true" />
             <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#9874#9880#0" expanded="true" />
-            <element signature="e#10268#10274#0" expanded="true" />
             <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#11241#11247#0" expanded="true" />
-            <element signature="e#11442#11448#0" expanded="true" />
-            <element signature="e#12144#12150#0" expanded="true" />
-            <element signature="e#12990#12996#0" expanded="true" />
-            <element signature="e#13921#13927#0" expanded="true" />
             <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/WaitHanding.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15375">
+          <caret line="616" column="23" selection-start-line="566" selection-start-column="16" selection-end-line="616" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#19360#19398#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -861,17 +842,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/InExcel.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/common/Sidebar.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        <state relative-caret-position="225">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -892,51 +873,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/WaitHanding.vue">
+    <entry file="file://$PROJECT_DIR$/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="616" column="23" lean-forward="true" selection-start-line="566" selection-start-column="16" selection-end-line="616" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#19360#19398#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="200">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/index.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/_source-map@0.5.7@source-map/lib/source-map-consumer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="39" />
+        <state relative-caret-position="139">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/Sidebar.vue">
+    <entry file="file://$PROJECT_DIR$/node_modules/_uglifyjs-webpack-plugin@0.4.6@uglifyjs-webpack-plugin/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="139">
+          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/orderHanding.vue">
+    <entry file="file://$PROJECT_DIR$/node_modules/_tapable@0.2.8@tapable/lib/Tapable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="646" column="38" selection-start-line="646" selection-start-column="38" selection-end-line="646" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#el-button#0;n#el-popover#0;n#div#0;n#template#0;n#el-table-column#6;n#el-table#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-row#5;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-row#7;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-row#9;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-col#1;n#el-row#12;n#el-form#0;n#div#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#19360#19398#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="147">
+          <caret line="203" column="19" selection-start-line="203" selection-start-column="19" selection-end-line="203" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/webpack.base.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="70" column="43" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="43" />
         </state>
       </provider>
     </entry>
